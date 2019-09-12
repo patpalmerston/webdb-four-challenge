@@ -17,7 +17,7 @@ exports.up = function(knex, Promise) {
 				.unique();
 		})
 		.createTable('recipe_ingredients', tbl => {
-			// tbl.increments(); --- is this legal?
+			tbl.increments()
 
 			tbl
 				.integer('recipe_id')
@@ -40,7 +40,7 @@ exports.up = function(knex, Promise) {
 				.notNullable()
 				.unsigned();
 
-			tbl.primary(['recipe_id', 'ingredient_id']);
+			tbl.unique(['recipe_id', 'ingredient_id'])
 		})
 		.createTable('steps', tbl => {
 			tbl.increments();
@@ -54,22 +54,6 @@ exports.up = function(knex, Promise) {
 				.onUpdate('CASCADE')
 				.onDelete('CASCADE');
 
-			tbl
-				.integer('ingredient_id')
-				.unsigned()
-				.references('id')
-				.inTable('ingredients')
-				.onUpdate('CASCADE')
-				.onDelete('CASCADE');
-
-			tbl
-				.integer('quantity_id')
-				.unsigned()
-				.notNullable()
-				.references('id')
-				.inTable('recipe_ingredients')
-				.onUpdate('CASCADE')
-				.onDelete('CASCADE');
 
 			tbl
 				.integer('step_number')
