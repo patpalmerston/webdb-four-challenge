@@ -17,7 +17,7 @@ exports.up = function(knex, Promise) {
 				.unique();
 		})
 		.createTable('recipe_ingredients', tbl => {
-			tbl.increments();
+			// tbl.increments();
 
 			tbl
 				.integer('recipe_id')
