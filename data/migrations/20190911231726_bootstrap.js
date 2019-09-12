@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
 			tbl.increments();
 
 			tbl
-				.string('name', 128)
+				.string('recipe_name', 128)
 				.notNullable()
 				.unique();
 		})
@@ -12,7 +12,7 @@ exports.up = function(knex, Promise) {
 			tbl.increments();
 
 			tbl
-				.string('name', 128)
+				.string('ingredient_name', 128)
 				.notNullable()
 				.unique();
 		})
