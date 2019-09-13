@@ -1,13 +1,13 @@
 const express = require('express');
 const configureMiddleware = require('./middleware');
 
-// const recipeRouter = require('../recipes/recipes-router')
+const recipeRouter = require('../recipes/recipes-router');
 
 const server = express();
 
 configureMiddleware(server);
 
-// server.use('/api/recipes', recipeRouter)
+server.use('/api/recipes', recipeRouter);
 
 // sanity check
 server.get('/', (req, res) => {
