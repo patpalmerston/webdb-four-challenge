@@ -11,8 +11,12 @@ function getRecipes() {
 }
 
 //should return a list of all ingredients and quantities for a given recipe
-function getShoppingList(recipe_id) {
-  console.log('getShoppingList')
+function getShoppingList(id) {
+  return db('recipe_ingredients as ri')
+    .join('recipes as r', 'r.id', 'ri.recipe_id')
+    .join('ingredients as i', 'i.id', 'ri.ingredient_id')
+    .select('ri.id', 'r.recipe_name', 'i.ingredient_name', 'ri.quantity')
+    .where('ri.recipe_id', id)
 }
 
 //should return a list of step by step instructions for preparing a recipe
